@@ -8,20 +8,20 @@ const checkUser = async(req,res,next)=>{
         jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken)=>{
             if(err){
                 console.log(err.message);
-                res.locals.user = null
-                next()
+                res.locals.user = null;
+                next();
             
             }else{
                 const user = await User.findById(decodedToken.userId)
-                res.locals.user = user
-                next()
+                res.locals.user = user;
+                next();
             }
-        })
+        });
     }else{
-        res.loacls.user = null
+        res.locals.user = null;
         next();
     }
-}
+};
 
 const authenicateToken = async (req , res, next) =>{
 try {
@@ -48,9 +48,5 @@ if(token){
     
 };
 };
-
-
-
-
 
 export{ authenicateToken,checkUser}; 
